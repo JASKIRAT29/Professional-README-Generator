@@ -2,15 +2,15 @@
 
 const inquirer = require('inquirer');
 const fs = require("fs");
-const generateMarkdown= require('./generateMarkdown');
+const generateMarkdown= require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 //const questions = [];
-
+function init() {
 inquirer
   .prompt([
     {
-      type: 'input',
+      type: 'list',
       message: 'What is your user name?',
       name: 'UserName',
       choices:[
@@ -28,11 +28,6 @@ inquirer
     },
     {
       type: 'input',
-      message: 'Re-enter password to confirm:',
-      name: 'confirm',
-    },
-    {
-      type: 'input',
       message: 'Description of your project:',
       name: 'Description',
     },
@@ -46,25 +41,20 @@ inquirer
       message: 'What is your GitHub username?:',
       name: 'githubusername',
     },
-    {
-      type: 'input',
-      message: 'What is your email address:',
-      name: 'email',
-    },
   ])
   
   .then((data) =>{
     //jaskirat kaur
     // TODO: Create a function to write README file
-    const filename = data.title.replace(' ', "").toLowerCase()
+    const filename = data.ProjectName.replace(' ', "").toLowerCase()
     fs.writeFile(`${filename}.md`, generateMarkdown(data), (err) =>
         err ? console.error(err) : console.log("Thanks! Your Professional Readme is generated"))
-})
+})}
 
 
 
 // TODO: Create a function to initialize app
-function init() { }
+
 
 // Function call to initialize app
 init();
