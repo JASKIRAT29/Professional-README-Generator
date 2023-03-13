@@ -10,6 +10,12 @@ function init() {
 inquirer
   .prompt([
     {
+      type: 'input',
+      message: 'What is your project title?',
+      name: 'title',
+     
+    },
+    {
       type: 'list',
       message: 'What is your user name?',
       name: 'UserName',
